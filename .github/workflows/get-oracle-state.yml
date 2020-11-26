@@ -61,11 +61,3 @@ jobs:
     - name: Delete python file
       run: |
         rm -f oracle.py
-
-    - name: Commit files
-      run: |
-        git config user.name lindongbin
-        git config user.email lin.crk@gmail.com
-        git add "README.md"
-        git commit -m "Update README.md"
-        git push
