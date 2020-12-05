@@ -14,7 +14,7 @@ jobs:
         java-version: 11
         
     - name: Install NDK
-      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.0.6352462" --sdk_root=${ANDROID_SDK_ROOT} >/dev/null
+     run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.1.6352462" --sdk_root=${ANDROID_SDK_ROOT} >/dev/null
 
     - name: Build Fenix
       run: |
