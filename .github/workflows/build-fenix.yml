@@ -7,6 +7,7 @@ jobs:
   build:
     runs-on: Ubuntu-20.04
 
+
     steps:
     - name: Setup Java JDK
       uses: actions/setup-java@v1
@@ -14,7 +15,7 @@ jobs:
         java-version: 11
         
     - name: Install NDK
-      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.1.6352462" --sdk_root=${ANDROID_SDK_ROOT} >/dev/null
+      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT} >/dev/null
 
     - name: Build Fenix
       run: |
