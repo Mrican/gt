@@ -25,7 +25,7 @@ jobs:
         sed -i 's/get() = this == Beta/get() = true/' app/src/main/java/org/mozilla/fenix/Config.kt
         #sed -i 's/get() = this == Debug || this == Nightly/get() = true/' app/src/main/java/org/mozilla/fenix/Config.kt
         ver=$(curl -sL https://api.github.com/repos/mozilla-mobile/android-components/releases/latest | sed 's/,/\n/g' | grep "tag_name" | sed 's/:/\n/g' | sed '1d' | sed 's/"//g' | sed 's/ v//g')
-        sed -i "s/^.*VERSION.*$/    const val VERSION = \"${ver}\"/" buildSrc/src/main/java/AndroidComponents.kt
+        sed -i "s/^.*VERSION.*$/ const val VERSION = \"${ver}\"/" buildSrc/src/main/java/AndroidComponents.kt
         sed -i 's/showSecretDebugMenuThisSession = false/showSecretDebugMenuThisSession = true/' app/src/main/java/org/mozilla/fenix/utils/Settings.kt
         ./gradlew clean app:assembleRelease
         
