@@ -7,7 +7,6 @@ jobs:
   build:
     runs-on: Ubuntu-20.04
 
-
     steps:
     - name: Setup Java JDK
       uses: actions/setup-java@v1
@@ -20,9 +19,13 @@ jobs:
     - name: Build Fenix
       run: |
         git clone https://github.com/mozilla-mobile/fenix .
+        #git checkout c40b93715fc890d006933d0585ffd07618fe2c4c
+        #sed -i 's/applicationIdSuffix ".firefox"/applicationIdSuffix ".firefox.m"/' app/build.gradle
+        #sed -i 's/mozilla_browser_engine_gecko_release/mozilla_browser_engine_gecko_beta/' app/build.gradle
         sed -i 's/get() = this == Beta/get() = true/' app/src/main/java/org/mozilla/fenix/Config.kt
+        #sed -i 's/get() = this == Debug || this == Nightly/get() = true/' app/src/main/java/org/mozilla/fenix/Config.kt
         ver=$(curl -sL https://api.github.com/repos/mozilla-mobile/android-components/releases/latest | sed 's/,/\n/g' | grep "tag_name" | sed 's/:/\n/g' | sed '1d' | sed 's/"//g' | sed 's/ v//g')
-        sed -i "s/^.*VERSION.*$/ const val VERSION = \"${ver}\"/" buildSrc/src/main/java/AndroidComponents.kt
+        sed -i "s/^.*VERSION.*$/    const val VERSION = \"${ver}\"/" buildSrc/src/main/java/AndroidComponents.kt
         sed -i 's/showSecretDebugMenuThisSession = false/showSecretDebugMenuThisSession = true/' app/src/main/java/org/mozilla/fenix/utils/Settings.kt
         ./gradlew clean app:assembleRelease
         
